@@ -394,7 +394,7 @@ export class MessageManager {
               sentMessages.push(res)
             }
           } else {
-            sentMessages = await this.sendMessageInChunks(ctx, content, message.message_id);
+            sentMessages = await this.sendMessageInChunks(ctx, content, /*message.message_id*/ undefined);
           }
 
           if (!Array.isArray(sentMessages)) return [];
@@ -402,7 +402,7 @@ export class MessageManager {
           const memories: Memory[] = [];
           for (let i = 0; i < sentMessages.length; i++) {
             const sentMessage = sentMessages[i];
-            
+
 
             const responseMemory: Memory = {
               id: createUniqueUuid(this.runtime, sentMessage.message_id.toString()),
